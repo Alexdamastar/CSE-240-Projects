@@ -1,3 +1,5 @@
 #Test Files
 Test.c
 
+#Ignore exe files
+.exe
