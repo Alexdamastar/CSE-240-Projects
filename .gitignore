@@ -2,9 +2,4 @@
 Test.c
 
 #Ignore exe files
-life.exe
-WriteFileExtended.exe
-WriteFile.exe
-ReadFile.exe
-ReadFileExtended.exe
-StructWriteFile
+*.exe
