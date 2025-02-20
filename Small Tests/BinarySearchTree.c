@@ -26,6 +26,7 @@ struct node* insert(struct node* root, int data)
     struct node* parent = root;
     while (current != NULL)
     {
+        printf("%d\n", current->data);
         parent = current;
         if (data < current->data)
             current = current->left;
