@@ -53,6 +53,14 @@ struct node* search(struct node* root, int data)
     return current;
 }
 
+struct node* find_minimum(struct node *root)
+{
+    if (root == NULL || root->left == NULL)
+        return root;
+    else
+        return find_minimum(root->left);
+}
+
 int main()
 {
     struct node* root = NULL;
@@ -67,5 +75,7 @@ int main()
         printf("%d not found\n", 40);
     else
         printf("%d found\n", 40);
+
+    printf("Minumum: %p, num: %d", find_minimum(root), find_minimum(root)->data);
     return 0;
 }
