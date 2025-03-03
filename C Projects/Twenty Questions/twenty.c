@@ -22,54 +22,46 @@ struct node* create_game_tree()
     return root;
 }
 
-void play_game(struct node* root)
-{
+void play_game(struct node* root) {
     struct node* current = root;
     char input;
 
     printf("Think of a fruit or vegetable. I will try to guess it!\n");
 
-    while (current != NULL)
+    while (current != NULL) 
     {
-        if (current->question[0] != '\0')
+        // Check if it's a leaf node
+        if (current->question == NULL || current->question[0] == '\0')
         {
-            //internal node, ask a question
-            printf("%s (y/n): ", current->question);
-            scanf(" %c", &input);
-            input = tolower(input); //just converting any input to lowercase, helps compatibility
-
-            if (input == 'y')
-            {
-                current = current->left;
-            }
-            else if (input == 'n')
-            {
-                current = current->right;
-            }
-            else
-            {
-                printf("Invalid input! Please enter 'y' or 'n'.\n");
-            }
-        }
-        else
-        {
-            //leaf node, make a guess
+            // Leaf node - make a guess
             printf("%s (y/n): ", current->guess);
-            scanf(" %c", input);
+            scanf(" %c", &input);
             input = tolower(input);
 
-            if (input = 'y')
-            {
+            if (input == 'y') {
                 printf("I win!\n");
-            }
-            else
-            {
+            } else {
                 printf("You win!\n");
             }
-            return; //game over
+
+            return; // End game session
+        }
+
+        // Internal node - ask a question
+        printf("%s (y/n): ", current->question);
+        scanf(" %c", &input);
+        input = tolower(input);
+
+        if (input == 'y') {
+            current = current->left;
+        } else if (input == 'n') {
+            current = current->right;
+        } else {
+            printf("Invalid input! Please enter 'y' or 'n'.\n");
         }
     }
 }
+
 
 
 int main()
