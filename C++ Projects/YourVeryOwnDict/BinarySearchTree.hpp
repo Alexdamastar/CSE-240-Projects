@@ -32,9 +32,9 @@ private:
         }
     }
 
-    V& search(Node* node, K key) {
-        if (!node) throw runtime_error("Key not found");
-        if (key == node->key) return node->value;
+    V* search(Node* node, K key) {
+        if (!node) return nullptr;
+        if (key == node->key) return &node->value;
         return (key < node->key) ? search(node->left, key) : search(node->right, key);
     }
 
@@ -45,7 +45,7 @@ public:
         insert(root, key, value);
     }
 
-    V search(K key) {
+    V* search(K key) {
         return search(root, key);
     }
 };

@@ -26,12 +26,12 @@ void Dict<K, V>::add(K key, V value)
 template <typename K, typename V>
 V& Dict<K, V>::operator[](K key)
 {
-    try {
-        return bt.search(key); // Search for the key
-    } catch (runtime_error&) {
-        bt.insert(key, V());
-        return bt.search(key);
+    V* result = bt.search(key); // Assuming search() returns a pointer or nullptr
+    if (!result) {
+        bt.insert(key, V{});  // Insert a default-constructed value
+        result = bt.search(key); // Search again to get a valid reference
     }
+    return *result;
 }
 
 #endif
